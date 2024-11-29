@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 
 const container = document.getElementById('root')
@@ -10,11 +10,31 @@ const root = createRoot(container)
 root.render(<App></App>)
 
 function App() {
+    const [opened, setOpen] = useState(false)
+    return (
+        <>
+            <button
+                onClick={(e) => {
+                    console.log('click')
+                    setOpen(true)
+                }}
+            >
+                CLICK
+            </button>
+            {opened && <Modal />}
+        </>
+    )
+}
+function Modal() {
     useEffect(() => {
-        console.log('mount')
+        console.log('setup')
+        const listener = () => console.log('click bubbling')
+        window.addEventListener('click', listener)
         return () => {
-            console.log('unmount')
+            console.log('cleanup')
+            window.removeEventListener('click', listener)
         }
     }, [])
-    return null
+    console.log('render')
+    return <>Modal</>
 }

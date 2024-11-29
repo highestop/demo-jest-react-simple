@@ -3,7 +3,7 @@ import { InitialOptionsTsJest } from 'ts-jest'
 export default {
     preset: 'ts-jest',
     testEnvironment: 'jest-environment-jsdom',
-    testMatch: [`**/*.(spec|test).(ts|tsx)`],
+    testMatch: [`**/__tests__/**/*.test.(ts|tsx)`],
     transform: {
         '^.+\\.(ts|tsx)$': 'ts-jest',
     },
